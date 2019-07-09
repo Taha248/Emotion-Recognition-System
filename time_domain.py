@@ -30,7 +30,7 @@ class time_domain():
         RRI_MEAN=self.RRI_Mean(NN)['rri_mean']
         
         timeDomainFeats = {
-            "ANN": ANN, "SDNN": SDNN,
+            "SDNN": SDNN,
             "SDSD": SDSD, "NN50": NN50,
                            "SDANN":SDANN , 
                             "SDNN_INDEX": SDNN_INDEX,

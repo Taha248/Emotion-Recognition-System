@@ -20,12 +20,15 @@ from numpy import genfromtxt
 import pyhrv.tools as tools
 from biosppy import utils
 import statistics 
+import json
 from time_domain import time_domain
 from qrs_detection import qrs_detection
+from frequency_domain import frequency_domain
 
 
 
 SAMPLE_FILE='sample1-default'
+#SAMPLE_FILE='sample2-external'
 SAMPLE_FILE_RESULT="samples/"+SAMPLE_FILE+"-result.json"
 
 # Sample rate and desired cutoff frequencies (in Hz).
@@ -45,7 +48,6 @@ def loadData():
 
 def writeJSONFile(result):
     f = open(SAMPLE_FILE_RESULT, "w")
-    print(result)
     f.write(result)
     f.close()
 
@@ -85,20 +87,30 @@ def getRRInterval(data):
 
 if __name__ == "__main__":
     x=loadData()
-    
     qrs_detection= qrs_detection()
     RR_Interval=getRRInterval(x)
-    
 
     
     # Time Domain Analysis
     time_domain = time_domain()
-    result = time_domain.timeDomain(RR_Interval)
-    time_domain.timeDomain(RR_Interval)
+    time_domain_result = time_domain.timeDomain(RR_Interval)
     
     
+    
+    frequency_domain = frequency_domain()
+    frequency_domain_result = frequency_domain.frequency_domain(nni=RR_Interval)
+    
+    
+    LF_HF=float((float(frequency_domain_result['fft_peak'][1]))
+          /(float(frequency_domain_result['fft_peak'][2])))
+    
+    Json_Result=str((str(time_domain_result).replace("'",'"')).replace('nan','"nan"')).split('}')[0]+','+'"VLF" : '+str(frequency_domain_result['fft_peak'][0])+','+'"LF" : '+str(frequency_domain_result['fft_peak'][1])+','+'"HF" : '+str(frequency_domain_result['fft_peak'][2])+','+'"LF/HF" : '+str(LF_HF)+'}'
+                         
+    
+    
+    print(Json_Result)
     #Write Data in JSON File
-    writeJSONFile((str(result).replace("'",'"')).replace('nan','"nan"'))
+    writeJSONFile((str(Json_Result).replace("'",'"')).replace('nan','"nan"'))
     
 
     
