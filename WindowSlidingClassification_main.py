@@ -13,8 +13,8 @@ FILE_PATH="sample.csv";
 WINDOW_OUTPUT_PATH="output";
 STATS_OUTPUT_PATH="output";
 
-OVERLAPPING = 2
-WINDOW_SIZE= 3
+OVERLAPPING = 4.5
+WINDOW_SIZE= 5
 
 class WindowSlidingClassification():
     # Assuming the data have same time difference

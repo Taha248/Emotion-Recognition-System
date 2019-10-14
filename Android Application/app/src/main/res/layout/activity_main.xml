@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_facial_emotion"
+            android:name="com.example.myapplication.fragment_homepage"
+            android:background="#FFFFFF"
+            >
+
+
+        </fragment>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_weight="0.3"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DETECT FACIAL EMOTION"
+                android:layout_weight="1"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:textSize="17dp"
+                android:textColor="#FFFFFFFF"
+                android:background="#2196F3"
+                android:id="@+id/btn_detect_emotion"
+                android:layout_gravity="center_vertical"
+                ></Button>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DETECT EMOTION AGAIN"
+                android:layout_weight="1"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:textSize="17dp"
+                android:textColor="#FFFFFFFF"
+                android:background="#2196F3"
+                android:visibility="gone"
+                android:id="@+id/btn_detect_emotion_again"
+                android:layout_gravity="center_vertical"
+                ></Button>
+        </LinearLayout>
+        </LinearLayout>
+
+
+</LinearLayout>
