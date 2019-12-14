@@ -14,9 +14,10 @@ from sklearn.model_selection import train_test_split
 
 
 class KNN_Model():
-    classifier = KNeighborsClassifier(n_neighbors=5)
-    scaler = StandardScaler()
-        
+    def __init__(self):
+        self.classifier = KNeighborsClassifier(n_neighbors=5)
+        self.scaler = StandardScaler()
+            
     
     def train_model(self):
          
@@ -28,28 +29,28 @@ class KNN_Model():
         
          X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.35)
          
-         scaler.fit(X_train)
+         self.scaler.fit(X_train)
     
-         X_train = scaler.transform(X_train)
-         X_test = scaler.transform(X_test)
+         X_train = self.scaler.transform(X_train)
+         X_test = self.scaler.transform(X_test)
         
-         classifier.fit(X_train, y_train)
+         self.classifier.fit(X_train, y_train)
         
-         test=scaler.transform(X_test)
-         y_pred = classifier.predict(test)
+         test=self.scaler.transform(X_test)
+         y_pred = self.classifier.predict(test)
          print(confusion_matrix(y_test, y_pred))
          print(classification_report(y_test, y_pred))
          
         
     def test_model(self,testSet):
-         p=scaler.transform(testSet)
-         k_pred = classifier.predict(p)
+         p=self.scaler.transform(testSet)
+         k_pred = self.classifier.predict(p)
          return k_pred
     
 
 x=KNN_Model();
 x.train_model()   
-print(x.test_model( [[8 ,200],[7.5,300 ], [3.6,100]]) )
+print(x.test_model( [[8 ,300],[7.5,300 ], [3.6,100]]) )
 print(x.test_model( [[3.2 ,100],[7.5,300 ], [9.6,200]]) )
      
              
