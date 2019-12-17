@@ -17,6 +17,8 @@ class statistical_analysis():
         pass
     
     def getMean(self,arr):
+        if((sum(arr) / len(arr))== 0  or (sum(arr) / len(arr))== "" ):
+            return 0
         return sum(arr) / len(arr) 
     
     def getVariance(self,arr):
@@ -24,25 +26,36 @@ class statistical_analysis():
         variance=0.0
         for i in range(len(arr)):
             variance+=(arr[i]-mean)**2
-        
+            
+            if((variance/len(arr)== 0)  or variance/len(arr)== "" ):
+                return 0
+            
         return variance/len(arr)
     
     def getEnergy(self,arr):
         array=copy.deepcopy(arr)
         for x in range(len(arr)):
             array[x]  = arr[x]*arr[x]
+            if((sum(array) / len(array) == 0)  or sum(array) / len(array) == "" ):
+                 return 0
         return sum(array) / len(array) 
     
     def getAAV(self,arr):
         s = 0
         for x in arr:
             s+=abs(x)
+        
+        if((s/(len(arr)-1) == 0)  or s/(len(arr)-1) == "" ):
+            return 0
         return s/(len(arr)-1)
     
     def getAAD(self,arr):
         s=0
         for i in range(1,len(arr)):
            s+=abs(arr[i-1]-arr[i])
+           
+        if(s==0 ):
+            return 0
         return s/(len(arr)-1)
     
     
@@ -57,12 +70,16 @@ class statistical_analysis():
         y=y/len(arr)
         y=(math.sqrt(y))**3
         
+        if(x == 0  and y == 0):
+            return 0       
+        
         return x/y
         
     
     
     def getKurtosis(self,arr):
         x,y=0.0,0.0
+        
         mean = sum(arr) / len(arr) 
         for i in range(len(arr)):
             val=(arr[i]-mean)**4
@@ -74,6 +91,10 @@ class statistical_analysis():
             y=y+(val)
         y=y/len(arr)
         y=y**2
+        
+        if(x == 0  and y == 0):
+            return 0     
+        
         return x/y
     
     def getRMS(self,arr):
@@ -91,6 +112,9 @@ class statistical_analysis():
             if(i==0):
                 continue
             total+=abs(self.sign(arr[i])-self.sign(arr[i-1]))
+        if(float(total)) == 0  or float(total) == "":
+            return 0     
+            
         return float(total)
     
     def getMeanCrossingRate(self,arr):
@@ -99,6 +123,8 @@ class statistical_analysis():
             if(i==0):
                 continue
             total+=abs(self.sign((arr[i]-self.getMean(arr))-self.sign(arr[i-1]-self.getMean(arr))))
+        if(float(total)) == 0  or float(total) == "":
+            return 0            
         return float(total)
     
     
@@ -116,7 +142,8 @@ class statistical_analysis():
           
         #Calculate Root 
         root = math.sqrt(mean) 
-      
+        if(float("{0:.4f}".format(root))) == 0  or float("{0:.4f}".format(root)) == "":
+            return 0           
         return float("{0:.4f}".format(root))
     
     

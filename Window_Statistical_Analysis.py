@@ -16,6 +16,7 @@ class Window_Statistical_Analysis():
     
     def getCalculatedAttributes(self,df):
         temperatureAttributes,GsrAttributes, BpmAttributes = [],[],[]
+        print(df)
         Temperature=df['Temperature'].values
         GSR=df['GSR'].values
         BPM=df['BPM'].values
